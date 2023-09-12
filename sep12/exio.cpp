@@ -1,0 +1,24 @@
+#include <iostream>
+#include <fstream> // allows to read from file
+
+int main()
+{
+    std::ifstream fin;
+    std::string line;
+    char c;
+    int x, y;
+    fin.open("numTest.txt");
+
+    if (fin.is_open())
+    {
+        // while (getline(fin, line)) // line by line
+        // while (fin >> line) // word by word
+        // while (fin <, c) // char by char
+        // while (!fin.eof())
+        {
+            fin >> x >> y;
+            std::cout << (x + y) << std::endl;
+        }
+        fin.close();
+    }
+}

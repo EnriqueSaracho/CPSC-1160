@@ -1,1 +1,2 @@
-# Functions/Methods creation
+- Functions/Methods creation (ex.cpp)
+- Reading from a file (exio.cpp)

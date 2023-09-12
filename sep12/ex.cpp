@@ -27,6 +27,33 @@ void max_min(int a, int b, int &max, int &min)
     }
 }
 
+template <typename T> // instead of overloading.
+void mySwap(T &a, T &b)
+{
+    T temp;
+    temp = a;
+    a = b;
+    b = temp;
+    return;
+}
+// Overload
+/*
+void mySwap(char &a, char &b)
+{
+    char temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+void mySwap(std::string &a, std::string &b)
+{
+    std::string temp;
+    temp = a;
+    a = b;
+    b = temp;
+}
+*/
+
 // Function documentation:
 // What it does
 // Inputs (Assumptions about the input too (ex: a >= 0))
@@ -47,6 +74,11 @@ int main()
     int max, min;
     max_min(2, 7, max, min);
     std::cout << max << " " << min << std::endl;
+
+    int a = 5, b = 3;
+    std::cout << a << " " << b << std::endl;
+    mySwap(a, b);
+    std::cout << a << " " << b << std::endl;
 
     return 0;
 }
