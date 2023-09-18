@@ -14,8 +14,8 @@ int main()
     {
         // while (fin >> line) // word by word
         // while (fin <, c) // char by char
-        // while (!fin.eof())
-        while (getline(fin, line)) // line by line
+        // while (getline(fin, line)) // line by line
+        while (!fin.eof()) // end of life
         {
             fin >> x >> y;
             std::cout << (x + y) << std::endl;
