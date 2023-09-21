@@ -1,6 +1,43 @@
 #include <iostream>
 #include <vector>
 
+// Linear search in a vector while limiting the amount of stacks as much as posible.
+int linearSearch(std::vector<int> &v, int n, int low, int high)
+{
+    if (low == high)
+    {
+        if (low == n)
+        {
+            return low;
+        }
+        return -1;
+    }
+    int mid = (low + high) / 2;
+    int a = linearSearch(v, n, low, mid);
+    int b = linearSearch(v, n, mid + 1, high);
+    if (a > b)
+    {
+        return a;
+    }
+    return b;
+}
+int linearSearch(std::vector<int> &v, int n)
+{
+    return linearSearch(v, n, 0, v.size() - 1);
+}
+
+// Generates binary numbers.
+void binGen(int k, std::string s = "")
+{
+    if (k == 0)
+    {
+        std::cout << s << std::endl;
+        return;
+    }
+    binGen(k - 1, s + '0');
+    binGen(k - 1, s + '1');
+}
+
 // Returns the binary representation.
 void dec2Bin(int num)
 {
@@ -50,10 +87,16 @@ int main()
 
     /* Calling isAsc */
     // std::vector<int> ov = {1, 2, 3, 4, 5};
-    // std::vector<int> uv = {1, 2, 1, 4, 5};
+    std::vector<int> uv = {1, 2, 1, 4, 5};
     // std::cout << isAsc(ov) << std::endl;
     // std::cout << isAsc(uv) << std::endl;
 
     /* Callin dec2Bin */
-    dec2Bin(7);
+    // dec2Bin(7);
+
+    /* Calling binGen */
+    // binGen(3);
+
+    /* Calling linearSearch */
+    std::cout << linearSearch(uv, 4);
 }
