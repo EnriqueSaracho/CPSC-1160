@@ -98,5 +98,5 @@ int main()
     // binGen(3);
 
     /* Calling linearSearch */
-    std::cout << linearSearch(uv, 4);
+    // std::cout << linearSearch(uv, 4);
 }
