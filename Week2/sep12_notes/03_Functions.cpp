@@ -1,3 +1,13 @@
+/*
+12/09/2023
+Notes:
+    - Function/method creation.
+        - Prototype and actual function.
+        - Parameters.
+            - Types.
+            - Manipulating variables.
+            - References and using 'const'.
+*/
 #include <iostream>
 
 const double PI = 3.14; // Global variable example (always constants)

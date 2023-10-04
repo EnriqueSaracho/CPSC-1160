@@ -1,3 +1,9 @@
+/*
+Notes:
+    - Recursion.
+    - Linear search.
+    - Finding palindrome.
+*/
 #include <iostream>
 #include <vector>
 

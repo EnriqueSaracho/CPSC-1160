@@ -1,3 +1,11 @@
+/*
+07/09/2023
+Notes on:
+    - std::string
+    - std::cout
+    - if statements
+    - loops
+*/
 #include <iostream>
 #include <cmath>
 

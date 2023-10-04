@@ -1,3 +1,10 @@
+/*
+28/09/2023
+Notes:
+    - Selection sort.
+        - Using for loop.
+        - Recursively.
+*/
 #include <iostream>
 #include <vector>
 

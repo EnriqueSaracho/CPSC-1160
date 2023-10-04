@@ -1,3 +1,8 @@
+/*
+07/09/2023
+Notes:
+    - string characters
+*/
 #include <iostream>
 
 int main()

@@ -1,3 +1,9 @@
+/*
+12/09/2023
+Notes:
+    - Files.
+        - Reading from file.
+*/
 #include <iostream>
 #include <fstream> // allows to read from file
 #include <string>  // for getline()

@@ -1,4 +1,11 @@
-// Insertion Sort (recursive).
+/*
+03/10/2023
+Notes:
+    - Recursion.
+    - Insertion Sort.
+*/
+
+// Insertion Sort.
 #include <iostream>
 #include <vector>
 

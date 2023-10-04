@@ -1,8 +1,16 @@
+/*
+19/09/2023
+Notes:
+    - Recursion.
+        - Baseline.
+    - Binary search.
+*/
 #include <iostream>
 #include <vector>
 
 int factorial(int n)
 {
+    // Baseline.
     if (n == 1)
     {
         return 1;

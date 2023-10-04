@@ -1,7 +1,12 @@
+/*
+03/10/2023
+Notes:
+    - Lab3 review.
+    - Finding path in matrix.
+*/
 #include <iostream>
 #include <vector>
 
-// Lab03 review:
 int path(std::vector<std::vector<int>> &m, int r = 0, int c = 0, int p_s = 0)
 {
     if (r == m.size() || c == m[r].size() || m[r][c] == 0)

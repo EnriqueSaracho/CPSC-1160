@@ -1,3 +1,13 @@
+/*
+14/09/2003
+Notes:
+    - Vectors.
+        - Declaration.
+        - Adding values.
+        - Passing vectors as arguments.
+        - For each loop ('auto' type).
+        - Multidimentional vectors.
+*/
 #include <iostream>
 #include <vector>
 

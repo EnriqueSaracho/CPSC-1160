@@ -1,4 +1,8 @@
-/* Recursive find max in vector problem from lab02 explained in class. */
+/*
+28/09/2023
+Notes:
+    - Recursive find max in vector problem from lab02 explained in class.
+*/
 
 #include <iostream>
 #include <vector>

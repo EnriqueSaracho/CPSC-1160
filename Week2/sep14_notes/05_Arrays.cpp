@@ -1,3 +1,12 @@
+/*
+14/09/2023
+Notes:
+    - Arrays.
+        - Types.
+        - Declaration.
+        - Passing as arguments.
+        - Multidimentional.
+*/
 #include <iostream>
 const int MAX_SIZE = 100;
 
@@ -27,7 +36,7 @@ void revArray(int a[], int size)
     }
 }
 
-void timesBy2(int a[], int size) // its making a copy of the array.
+void timesBy2(int a[], int size) // The argument serves as a pointer to the first element of the array. So the values can be altered.
 {
     for (int i = 0; i < size; i++)
     {
