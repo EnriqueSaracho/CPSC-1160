@@ -43,13 +43,14 @@ void findZero(const std::vector<std::vector<int>> &matrix, std::vector<int> &sta
 
 bool zeroToZero(const std::vector<std::vector<int>> &matrix, std::vector<std::vector<char>> &map, const std::vector<int> &start, int row, int col, int total = 0)
 {
-    std::cout << "Exploring cell [" << row << "][" << col << "] with total = " << total << std::endl;
+    // std::cout << "Exploring cell [" << row << "][" << col << "] with total = " << total << std::endl; // Test.
+
     if (row == matrix.size() || col == matrix[row].size()) // If the path goes out of bounds.
         return false;
     if (map[row][col] != '-') // If the path crashes against itself.
         return false;
 
-    if (matrix[row][col] == 0 && total > 0 && (row != start[0] || col != start[1])) // If the path finds a zero.
+    if (matrix[row][col] == 0 && total > 0 && !(row == start[0] && col == start[1])) // If the path finds a zero.
         return true;
 
     total += matrix[row][col]; // Adding the value of the current cell.
