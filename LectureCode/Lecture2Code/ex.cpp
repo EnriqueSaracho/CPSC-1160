@@ -1,9 +1,10 @@
 #include <iostream>
 #include <cmath>
 
-int main(){
+int main()
+{
     std::string str;
-    double r = std::pow(3,7);
+    double r = std::pow(3, 7);
     int x;
     str = "hello";
     str += " world";
@@ -12,24 +13,28 @@ int main(){
     str += std::to_string(x);
     std::cout << str << std::endl;
 
-    if(false || x > 0 ){
-
-    }else if(42){
-    
-    }else{
-
+    if (false || x > 0)
+    {
+    }
+    else if (42)
+    {
+    }
+    else
+    {
     }
     x = 0;
-    while(x < 10){
+    while (x < 10)
+    {
         x++;
         std::cout << x;
     }
-    do{
-        
-    }while(x == 43);
+    do
+    {
 
-    for(; ;){
+    } while (x == 43);
 
+    for (;;)
+    {
     }
 
     return 0;

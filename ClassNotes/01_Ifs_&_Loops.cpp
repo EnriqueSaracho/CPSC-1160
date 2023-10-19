@@ -1,13 +1,16 @@
 /*
+Lecture 2
 07/09/2023
 Notes on:
     - std::string
     - std::cout
     - if statements
     - loops
+    - scopes
 */
 #include <iostream>
 #include <cmath>
+#include <string>
 
 int main()
 {
@@ -17,32 +20,40 @@ int main()
     str += " World";
     str += "!";
     str[0] = 'H';
-    // str += std::to_string(x);
+    str += std::to_string(x);
     std::cout << str << std ::endl;
 
     if (false || x > 0)
     {
     }
-    else if ()
+    else if (42)
     {
     }
     else
     {
     }
 
-    while (x == 2)
+    x = 0;
+    while (x < 10)
     {
+        x++;
+        std::cout << x << std::endl;
     }
 
     do
     {
 
-    } while ();
+    } while (x == 43);
 
     for (int x = 0; x < 10; x++)
     {
     }
 
+    for (;;)
+    {
+    }
+
+    // Scopes
     {
         int y;
         {
