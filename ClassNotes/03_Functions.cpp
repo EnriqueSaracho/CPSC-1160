@@ -1,4 +1,5 @@
 /*
+Lecture 3
 12/09/2023
 Notes:
     - Function/method creation.
@@ -19,8 +20,8 @@ int myPow(int, int = 2); // default parameter has to be after the non-default pa
 // int myPow(int) // You can also overload
 
 // Function with string parameter
-// The & makes the function reference the variable instead of creating a new one (if it doesn't have 'const' it has to be a variable, not literal).
-// The 'const' makes it not changeable (safer when referencing).
+// The & makes the function reference the variable instead of creating a new one.
+// The 'const' makes it not changeable (safer when referencing, and works only for variables, not for literals).
 void print(const std::string &str)
 {
     std::cout << str << std::endl;

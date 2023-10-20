@@ -1,4 +1,6 @@
 /*
+Lecture 6
+21/09/2023
 Notes:
     - Recursion.
     - Linear search.
@@ -64,45 +66,45 @@ bool isAsc(std::vector<int> &v, int i = 0)
     return v[i] < v[i + 1] && isAsc(v, i + 1);
 }
 
-// TODO: Fix.
 // Returns true if the string is PALINDROME.
-// bool pali(const std::string &s, int i, int j)
-// {
-//     if (i >= j)
-//     {
-//         return true;
-//     }
-//     if (s[i] != s[j])
-//     {
-//         return false;
-//     }
-//     pali(s, i + 1, j - 1);
-// }
-// bool pali(const std::string &s)
-// {
-//     return pali(s, 0, s.size() - 1);
-// }
+bool isPalindrome(const std::string &s, int i, int j)
+{
+    if (i >= j)
+    {
+        return true;
+    }
+    bool r = isPalindrome(s, i + 1, j - 1);
+    if (s[i] == s[j] && r)
+    {
+        return true;
+    }
+    return false;
+}
+bool isPalindrome(const std::string &s)
+{
+    return isPalindrome(s, 0, s.size() - 1);
+}
 
 int main()
 {
     /* Calling pali */
-    // std::string w1 = "racecar";
-    // std::string w2 = "burger";
-    // std::cout << pali(w1) << std::endl;
-    // std::cout << pali(w2) << std::endl;
+    std::string w1 = "racecar";
+    std::string w2 = "burger";
+    std::cout << isPalindrome(w1) << std::endl;
+    std::cout << isPalindrome(w2) << std::endl;
 
     /* Calling isAsc */
-    // std::vector<int> ov = {1, 2, 3, 4, 5};
+    std::vector<int> ov = {1, 2, 3, 4, 5};
     std::vector<int> uv = {1, 2, 1, 4, 5};
-    // std::cout << isAsc(ov) << std::endl;
-    // std::cout << isAsc(uv) << std::endl;
+    std::cout << isAsc(ov) << std::endl;
+    std::cout << isAsc(uv) << std::endl;
 
     /* Callin dec2Bin */
-    // dec2Bin(7);
+    dec2Bin(7);
 
     /* Calling binGen */
-    // binGen(3);
+    binGen(3);
 
     /* Calling linearSearch */
-    // std::cout << linearSearch(uv, 4);
+    std::cout << linearSearch(uv, 4);
 }

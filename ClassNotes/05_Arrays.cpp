@@ -1,4 +1,5 @@
 /*
+Lecture 4
 14/09/2023
 Notes:
     - Arrays.
@@ -25,6 +26,7 @@ void printArray(int a[][3], int row, int col)
 
 // Reverse an array
 // To create a copy of an array you would have to pass the new array as an argument.
+// Because when passing an array it is automatically a reference.
 void revArray(int a[], int size)
 {
     int temp;
@@ -75,7 +77,7 @@ int main()
     printArray(d, size);
     std::cout << std::endl;
 
-    timesBy2(d, size); // it doesn't change the array because it creates a copy.
+    timesBy2(d, size); // it doesn't change the array because it creates a copy. Well it would if I created a new parameter where i could put a new empty array and add logic to change its values.
     printArray(d, size);
     std::cout << std::endl;
 

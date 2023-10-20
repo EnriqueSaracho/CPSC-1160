@@ -35,10 +35,23 @@ b)   An integer number.
 /*Question 3:*/
 bool isSorted(std::vector<int> &v, int n = 0)
 {
+     if (n == v.size() - 1)
+     {
+          return true;
+     }
+     return v[n] < v[n + 1] && isSorted(v, n + 1);
+}
+
+int sumThing(std::vector<int> &v, int sum)
+{
 }
 
 int main()
 {
-     std::vector<int> v = {1, 2, 3, 4, 5};
-     std::cout << isSorted(v) << std::endl;
+     // std::vector<int> v = {1, 2, 3, 4, 5};
+     // std::vector<int> v = {1, 2, 3, 4, 3};
+     // std::cout << isSorted(v) << std::endl;
+
+     std::vector<int> A = {8, 4, 6, 2};
+     std::cout << sumThing(A, 10) << std::endl;
 }

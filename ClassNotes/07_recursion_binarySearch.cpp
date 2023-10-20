@@ -1,4 +1,5 @@
 /*
+Lecture 5
 19/09/2023
 Notes:
     - Recursion.
@@ -19,6 +20,7 @@ int factorial(int n)
     return n * factorial(n - 1);
 }
 
+// Sum up all the values in a vector
 int sum_vector(std::vector<int> &v, int i = 0)
 {
     if (i == static_cast<int>(v.size() - 1))
@@ -64,7 +66,6 @@ int main()
     // std::cout << factorial(5);
 
     std::vector<int> v = {1, 3, 6, 9, 12, 16, 21, 38, 50};
-
     // std::cout << sum_vector(v);
 
     std::cout << bin_s(v, -8);

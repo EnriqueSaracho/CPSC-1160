@@ -1,4 +1,5 @@
 /*
+Lecture 7
 28/09/2023
 Notes:
     - Recursive find max in vector problem from lab02 explained in class.

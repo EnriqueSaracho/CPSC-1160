@@ -1,4 +1,5 @@
 /*
+Lecture 4
 14/09/2003
 Notes:
     - Vectors.
@@ -53,6 +54,8 @@ int main()
     }
 
     std::vector<std::vector<int>> m(2, std::vector<int>(3)); // multi-dimensional vector.
+    m.push_back(std::vector<int>(2));                        // Adds another element(vector) of the first dimension
+
     for (auto &row : m)
     {
         for (auto &x : row)
