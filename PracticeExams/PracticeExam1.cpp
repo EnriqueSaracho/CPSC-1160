@@ -33,17 +33,23 @@ b)   An integer number.
 #include <vector>
 
 /*Question 3:*/
-bool isSorted(std::vector<int> &v, int n = 0)
-{
-     if (n == v.size() - 1)
-     {
-          return true;
-     }
-     return v[n] < v[n + 1] && isSorted(v, n + 1);
-}
+// bool isSorted(std::vector<int> &v, int n = 0)
+// {
+//      if (n == v.size() - 1)
+//      {
+//           return true;
+//      }
+//      return v[n] < v[n + 1] && isSorted(v, n + 1);
+// }
 
 int sumThing(std::vector<int> &v, int sum)
 {
+
+     int x = 0;
+     for (int i = 0; i < v.size(); i++)
+     {
+          x += v[i] + sumThing(v, sum);
+     }
 }
 
 int main()
