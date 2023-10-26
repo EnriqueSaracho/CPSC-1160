@@ -26,7 +26,7 @@ struct point
     // returns the distance between two points
     double dist(point &q)
     {
-        return std::sqrt(std::pow((x + q.x), 2) + std::pow((y + q.y), 2));
+        return std::sqrt(std::pow((x - q.x), 2) + std::pow((y - q.y), 2));
     }
 };
 
@@ -42,7 +42,7 @@ point mid(point &p, point &q)
     return point{(p.x + q.x), (p.y + q.y)};
 }
 
-// Find the to points in a vector closest to each other and returns distance
+// Find the two points in a vector closest to each other and returns distance
 double minDist(std::vector<point> &v)
 {
     if (v.size() < 2)
