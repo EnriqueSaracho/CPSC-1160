@@ -40,16 +40,16 @@ int main()
     p = q; // now p and q are pointing at the same piece of memory, r didn't change.
 
     *q = 6;
-    std::cout << *p << std::endl; // prints 6 (value in q).
+    std::cout << *q << std::endl; // prints 6 (value in q).
 
     // delete r; // what should be done for no memory leak
     r = new int(12); // leaves the value 3 (from line 35) as an unreferenced piece of memory (memory leak).
                      // C++ doesn't have a garbage collector.
 
     delete q;
-    // p = nullptr; // what should be done to avoid dangling pointer.
+    // q = nullptr; // what should be done to avoid dangling pointer.
     q = r;
-    // Now p is pointing to a free piece of memory (dangling pointer, problem).
+    // Now q is pointing to a free piece of memory (dangling pointer, problem).
 
     // With structs
     // point *pt= new point{3,4};

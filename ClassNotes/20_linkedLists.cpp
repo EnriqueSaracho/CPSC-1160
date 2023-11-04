@@ -7,6 +7,7 @@ struct node
     node *next;
 };
 
+// Prints a linked list
 void print(node *p)
 {
     for (; p; p = p->next)
@@ -15,6 +16,7 @@ void print(node *p)
     }
 }
 
+// Returns the copy of a linked list
 node *iterative_copy_list(node *p)
 {
     if (!p)
@@ -35,6 +37,7 @@ node *iterative_copy_list(node *p)
     return h;
 }
 
+// Returns the copy of a linked list
 node *copy_list(node *p)
 {
     if (!p)
@@ -44,6 +47,7 @@ node *copy_list(node *p)
     return new node{p->data, copy_list(p->next)};
 }
 
+// Returns a reversed copy of a linked list.
 node *rev_copy_list(node *p)
 {
     node *q = nullptr;
@@ -55,6 +59,7 @@ node *rev_copy_list(node *p)
     return q;
 }
 
+// Returns the modified reversed list.
 node *rev_inplace(node *p)
 {
     if (!p || !p->next)

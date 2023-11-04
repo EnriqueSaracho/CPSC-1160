@@ -15,16 +15,6 @@ void print(node *h)
     std::cout << "nullptr" << std::endl;
 }
 
-node *insert(int x, node *p)
-{
-    if (!p || p->data > x)
-    {
-        return new node{x, p};
-    }
-    p->next = insert(x, p->next);
-    return p;
-}
-
 node *createList(const std::string &num, unsigned i = 0)
 {
     if (i == num.size())
