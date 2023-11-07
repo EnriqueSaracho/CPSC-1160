@@ -14,7 +14,7 @@ private:
         char value;
         int count;
     };
-    std::vector<item> A;
+    item *A;
     int size;
 
 public:
@@ -27,13 +27,19 @@ public:
 
     /**
      * Constructor function.
-     * Initializes the letter_counter object and stores in the vector of structs 'A' each letter from the input string as well
+     * Initializes the letter_counter object and stores in the dinamic array 'A' each letter from the input string as well
      * as the amount of times it appears.
      *
      * @param str - string.
      * @return letter_counter - the letter_counter class object.
      */
     letter_counter(std::string);
+
+    // Copy constructor:
+    letter_counter(const letter_counter &);
+
+    // Destructor:
+    ~letter_counter();
 
     /**
      * Prints the information from the vector of structs 'A' in an ordered manner.
@@ -96,9 +102,19 @@ public:
 void letter_counter::add(char ch)
 {
     int index = binarySearch(ch, 0, size - 1);
+
     if (index < 0)
     {
-        A.push_back({ch, 1});
+        item *tmp = new item[size + 1];
+        unsigned i = 0;
+        for (; i < size; i++)
+        {
+            tmp[i] = {A[i].value, A[i].count};
+        }
+        tmp[i] = {ch, 1};
+        delete A;
+        A = tmp;
+        tmp = nullptr;
         size++;
         quickSort(0, size - 1);
     }
@@ -121,13 +137,33 @@ letter_counter::letter_counter(std::string str)
         return;
     }
 
-    A.push_back({static_cast<char>(toupper(str[0])), 1});
+    A = new item[1];
+    A[0].value = static_cast<char>(toupper(str[0]));
+    A[0].count = 1;
     size = 1;
 
     for (int i = 1; i < str.size(); i++)
     {
         add(static_cast<char>(toupper(str[i])));
     }
+}
+
+letter_counter::letter_counter(const letter_counter &obj)
+{
+    std::cout << "-------------------COPY-------------------" << std::endl;
+    size = obj.size;
+    A = new item[size];
+    for (int i = 0; i < size; i++)
+    {
+        A[i] = obj.A[i];
+    }
+}
+
+letter_counter::~letter_counter()
+{
+    delete A;
+    A = nullptr;
+    std::cout << "-------------------DELETE-------------------" << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &out, const letter_counter &obj)
@@ -178,7 +214,6 @@ void letter_counter::quickSort(int low, int high)
     }
     if (low + 1 == high)
     {
-
         if (A[low].value > A[high].value)
         {
             item temp = A[low];

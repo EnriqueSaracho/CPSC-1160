@@ -1,25 +1,30 @@
 #include <iostream>
 
-void swap(int *a, int *b) // Pointers as parameters.
+class letter_counter
 {
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
-    return;
-}
+private:
+    struct item
+    {
+        char value;
+        int count;
+    };
+    item *A;
+    int size;
 
-void swap(int &a, int &b) // This better tho (referenced variables, for this case).
+public:
+    letter_counter();
+    letter_counter(std::string);
+    friend std::ostream &operator<<(std::ostream &out, const letter_counter &obj);
+    void add(char i);
+    int binarySearch(char, int, int);
+    void quickSort(int, int);
+};
+
+letter_counter::letter_counter()
 {
-    int tmp = a;
-    a = b;
-    b = tmp;
-    return;
+    size = 0;
 }
 
 int main()
 {
-    int c, d;
-    c = 2;
-    d = 3;
-    swap(&c, &d);
 }

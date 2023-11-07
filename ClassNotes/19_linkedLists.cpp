@@ -23,10 +23,17 @@ void printRec(node *p)
     if (p) // or p != nullptr
     {
         std::cout << p->data << "->";
-        print(p->next);
+        printRec(p->next);
         return;
     }
     std::cout << "nullptr" << std::endl;
+}
+
+// Add a new node at the beginning of the linked list
+node *add(node *p, int n)
+{
+    p = new node{n, p};
+    return p;
 }
 
 // Adds a new node to the end of an existing node list
@@ -86,6 +93,16 @@ node *vecToList(std::vector<int> &v, int i = 0)
     return new node{v[i], vecToList(v, i + 1)};
 }
 
+node *copyVector(std::vector<int> &v)
+{
+    node *p = nullptr;
+    for (int i = v.size() - 1; i > -1; i--)
+    {
+        p = new node{v[i], p};
+    }
+    return p;
+}
+
 // Removes a node from a linked list
 node *remove(node *p, int num)
 {
@@ -100,6 +117,20 @@ node *remove(node *p, int num)
         return remove(n, num);
     }
     p->next = remove(p->next, num);
+    return p;
+}
+node *removeNode(node *p, int n)
+{
+    if (!p)
+        return p;
+    if (p->data == n)
+    {
+        node *tmp = p;
+        delete p;
+        p = tmp;
+        return p;
+    }
+    p->next = remove(p->next, n);
     return p;
 }
 
@@ -125,13 +156,22 @@ node *deleteList(node *p)
 //     }
 //     return p;
 // }
+node *deleteLL(node *p)
+{
+    if (!p)
+        return p;
+    node *tmp = p;
+    p = p->next;
+    delete tmp;
+    return deleteLL(p);
+}
 
 int main()
 {
-    node *p = new node{3, nullptr};
-    p->next = new node{5, nullptr}; // the '->' dereferences the pointer and accesses the node's property. same as (*p).next
-    p->next->next = new node{2, nullptr};
-    p->next->next->next = new node{7, new node{4, nullptr}};
+    // node *p = new node{3, nullptr};
+    // p->next = new node{5, nullptr}; // the '->' dereferences the pointer and accesses the node's property. same as (*p).next
+    // p->next->next = new node{2, nullptr};
+    // p->next->next->next = new node{7, new node{4, nullptr}};
     // Linked list so fat:
     // p -> 3 -> 5 -> 2 -> 7 -> 4 -> nullptr
     // std::cout << p->next->next->next->next->data << std::endl; // prints 4
@@ -141,6 +181,7 @@ int main()
 
     // adding a new node at the beginning of the linked list
     // p = new node{6, p};
+    // p = add(p, 8);
 
     // adding a new node a the end of the list
     // appendExisting(p, 8);
@@ -156,16 +197,23 @@ int main()
     // print(h);
 
     // creating a linked list out of a vector
-    std::vector<int> v = {1, 3, 4, 5, 8, 5};
-    node *h = vecToList(v);
-    print(h);
+    // std::vector<int> v = {1, 3, 4, 5, 8, 5};
+    // std::vector<int> v = {1, 3, 4, 5};
+    // node *p = copyVector(v);
+    // print(p);
+    // node *h = vecToList(v);
+    // print(h);
 
     // removing a node from a linked list
-    h = remove(h, 5);
-    print(h);
+    // h = remove(h, 5);
+    // print(h);
+    // p = removeNode(p, 4);
+    // print(p);
 
     // deleting a list
-    h = deleteList(h);
-    std::cout << "deleting..." << std::endl;
-    print(h);
+    // h = deleteList(h);
+    // std::cout << "deleting..." << std::endl;
+    // print(h);
+    // p = deleteLL(p);
+    // print(p);
 }
