@@ -1,3 +1,7 @@
+/*
+Lecture 14 maybe?
+Header file: point&classes.h
+*/
 #include <iostream>
 #include "point&classes.h"
 

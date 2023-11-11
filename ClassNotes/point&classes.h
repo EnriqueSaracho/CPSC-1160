@@ -10,7 +10,7 @@ public:
     point(const point &og); // Copy constructor
     ~point();               // Delete constructor
 
-    const point &operator=(const point &rhs); // Copy constructor from the other side of the operator
+    const point &operator=(const point &rhs); // Assignment operator
 
 private:
     int *x;
@@ -22,15 +22,15 @@ point::point(int a, int b)
     x = new int(a);
     y = b;
 }
-point::~point()
-{
-    std::cout << "DELETED" << std::endl;
-    delete x;
-}
 point::point(const point &og)
 {
     x = new int(*og.x);
     y = og.y;
+}
+point::~point()
+{
+    std::cout << "DELETED" << std::endl;
+    delete x;
 }
 const point &point::operator=(const point &rhs)
 {

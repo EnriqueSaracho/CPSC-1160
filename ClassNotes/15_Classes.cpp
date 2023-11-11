@@ -1,9 +1,13 @@
+/*
+Lecture 11
+Notes:
+    - header file: point.h
+*/
 // #include <iostream>
 // #include <cmath>
 #include "point.h"
 #include "point.h"
 
-// header file: point.h
 // class point
 // {
 // public:

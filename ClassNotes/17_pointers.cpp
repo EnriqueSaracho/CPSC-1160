@@ -1,4 +1,5 @@
 /*
+Lecture 14 (I think)
 20/10/2023
 Notes:
     - Pointers
@@ -50,6 +51,7 @@ int main()
     // q = nullptr; // what should be done to avoid dangling pointer.
     q = r;
     // Now q is pointing to a free piece of memory (dangling pointer, problem).
+    p = nullptr;
 
     // With structs
     // point *pt= new point{3,4};
@@ -59,10 +61,12 @@ int main()
 
     if (p) // Checks if the pointer is not a null pointer.
     {
+        std::cout << "p is a dangling pointer" << std::endl;
     }
 
     if (p == nullptr) // Checks if it is a null pointer
     {
+        std::cout << "p is a dangling pointer" << std::endl;
     }
     if (!p) // Same
     {
@@ -70,9 +74,11 @@ int main()
 
     if (q == r) // Checks if they point to the same location.
     {
+        std::cout << "q == r (they point to the same location)" << std::endl;
     }
     if (*q == *r) // Checks if they point to the same value.
     {
+        std::cout << "*q == *r (they point to locations containing the same value)" << std::endl;
     }
 
     // Dinamic arrays
@@ -83,6 +89,8 @@ int main()
     *(arr + 3) = 4;                     // same thing as arr[3] = 4
     *arr = 1;                           // Changes the first element
     arr[100] = 42;                      // Extends the size and intitializes 100th element.
+
+    std::cout << "arr = [" << arr[0] << " " << arr[1] << " " << arr[2] << " " << arr[3] << " " << arr[4] << "]" << std::endl;
 
     // You can return a dinamic array from a function
     // int *make_array(int size)
@@ -97,6 +105,7 @@ int main()
     // }
 
     delete[] arr;
+    arr = nullptr;
 
     // Two-dimensional dinamic array
     int **matrix = new int *[3];
@@ -117,12 +126,14 @@ int main()
         delete[] matrix[i];
     }
     delete[] matrix;
+    matrix = nullptr;
 
     // struct arr
     // {
     //     int size;
     //     int *a;
-    // } arr *pt = new arr;
+    // };
+    // arr *pt = new arr;
     // pt->a = new int[5];
     // p->size = 5;
     // delete pt->a;

@@ -25,9 +25,11 @@ int main()
 
     if (false || x > 0)
     {
+        std::cout << "if (false || x > 0)" << std::endl;
     }
     else if (42)
     {
+        std::cout << "if (42)" << std::endl;
     }
     else
     {

@@ -1,3 +1,7 @@
+/*
+Lecture 12
+Header file: Line.h
+*/
 #include "Line.h"
 
 using namespace std;

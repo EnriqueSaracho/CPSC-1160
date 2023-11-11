@@ -1,3 +1,7 @@
+/*
+Lecture 10
+10/10/2023
+*/
 #include <iostream>
 #include <vector>
 

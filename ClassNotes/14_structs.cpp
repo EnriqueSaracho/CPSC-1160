@@ -1,3 +1,9 @@
+/*
+Lecture 10
+10/10/2023
+Notes:
+    - Structs
+*/
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -5,7 +11,7 @@
 
 struct point
 {
-    int x = rand() % 14; // 0 is the default value.
+    int x = rand() % 14; // number between 0 and 15
     int y = rand() % 15;
 
     void print()
