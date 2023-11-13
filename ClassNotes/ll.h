@@ -1,20 +1,19 @@
 #ifndef LL_H
 #define LL_H
-
 #include <iostream>
 
 template <typename T>
 class ll
 {
 public:
-    ll(); // Constructor
+    ll();                            // default constructor
+    ll(const ll &);                  // copy constructor
+    ~ll();                           // deconstructor
+    const ll &operator=(const ll &); // asignment operator
     void add(T);
     void append(T);
-    friend std::ostream &operator<<(std::ostream &, const ll &);
-
-    ~ll();                           // Destructor
-    ll(const ll &);                  // Copy constructor
-    const ll &operator=(const ll &); // Assignment operator
+    template <typename U>
+    friend std::ostream &operator<<(std::ostream &, const ll<U> &);
 
 private:
     struct node
@@ -22,51 +21,58 @@ private:
         T data;
         node *next;
     };
+    node *head;
 
     node *copyList(node *);
     node *deleteList(node *);
     node *append(node *, T);
-    node *head;
 };
 
 template <typename T>
-ll::node *ll::append(node *p, int x)
-{
-    if (!p)
-        return new node{x, p};
-    p->next = append(p->next, x);
-    return p;
-}
-
-ll::node *ll::deleteList(node *p)
-{
-    if (p)
-    {
-        deleteList(p->next);
-        delete p;
-    }
-}
-
-ll::node *ll::copyList(node *p)
-{
-    if (p)
-        return p;
-    return new node{p->data, copyList(p->next)}; // TODO: Check if this is correct
-}
-
-ll::ll()
+ll<T>::ll()
 {
     head = nullptr;
 }
 
-void ll::add(int x)
+template <typename T>
+ll<T>::ll(const ll &rhs)
 {
-    head = new node{x, nullptr};
+    head = copyList(rhs.head);
 }
 
-std::ostream &operator<<(std::ostream &out, const ll &rhs)
+template <typename T>
+ll<T>::~ll()
 {
-    ll::node *p = rhs.head;
+    head = deleteList(head);
+}
+
+template <typename T>
+const ll<T> &ll<T>::operator=(const ll &rhs)
+{
+    if (this != &rhs)
+    {
+        head = deleteList(head);
+        head = copyList(rhs.head);
+    }
+    return *this;
+}
+
+template <typename T>
+void ll<T>::add(T x)
+{
+    head = new node{x, head};
+}
+
+template <typename T>
+void ll<T>::append(T x)
+{
+    head = append(head, x);
+}
+
+template <typename T>
+std::ostream &operator<<(std::ostream &out, const ll<T> &rhs)
+{
+    typename ll<T>::node *p = rhs.head;
     while (p)
     {
         out << p->data << " ";
@@ -75,22 +81,34 @@ std::ostream &operator<<(std::ostream &out, const ll &rhs)
     return out;
 }
 
-ll::~ll()
+template <typename T>
+typename ll<T>::node *ll<T>::copyList(node *p)
 {
-    head = deleteList(head);
+    if (!p)
+        return p;
+    return new node{p->data, copyList(p->next)};
 }
-ll::ll(const ll &rhs)
+
+template <typename T>
+typename ll<T>::node *ll<T>::deleteList(node *p)
 {
-    head = copyList(rhs.head);
-}
-const ll &ll::operator=(const ll &rhs)
-{
-    if (this != &rhs)
+    if (p)
     {
-        head = deleteList(head);
-        head = copyList(rhs.head);
+        deleteList(p->next);
+        delete p;
     }
-    return *this;
+    return nullptr;
+}
+
+template <typename T>
+typename ll<T>::node *ll<T>::append(node *p, T x)
+{
+    if (!p)
+    {
+        return new node{x, p};
+    }
+    p->next = append(p->next, x);
+    return p;
 }
 
 #endif

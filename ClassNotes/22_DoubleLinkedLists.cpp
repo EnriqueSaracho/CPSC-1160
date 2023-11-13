@@ -1,3 +1,9 @@
+/*
+Lecture 17
+09/11/2023
+Notes:
+    - Double linked lists
+*/
 #include <iostream>
 
 struct node
@@ -13,15 +19,35 @@ node *remove(node *p, int n)
         return p;
 
     node *q = p;
-    while (q)
+    while (q->next)
     {
-        if (q != 3)
+        if (q->data == n)
         {
-            q->prev = q;
-            q->next->prev = q->prev;
-            delete q;
+            if (!q->prev)
+            {
+                q->next->prev = nullptr;
+                p = p->next;
+                delete q;
+                q = p;
+            }
+            else
+            {
+                q->prev->next = q->next;
+                q->next->prev = q->prev;
+                node *tmp = q;
+                q = q->next;
+                delete tmp;
+            }
         }
-        q = q->next;
+        else
+        {
+            q = q->next;
+        }
+    }
+    if (q->data == n)
+    {
+        q->prev->next = nullptr;
+        delete q;
     }
     return p;
 }
@@ -38,21 +64,18 @@ node *insert(node *p, int n)
     if (!q->prev)
     {
         p = new node{nullptr, n, p};
-        p->next->next = p;
+        p->next->prev = p;
     }
-
     else if (!q->next && q->data < n)
     {
         q->next = new node{q, n, nullptr};
     }
-
     else
     {
         node *t = new node{q->prev, n, q};
         t->next->prev = t;
         t->prev->next = t;
     }
-
     return p;
 }
 
@@ -66,6 +89,20 @@ int main()
     p->next = new node{p, 4, p->next}; // inserting in the middle
     p->next->next->prev = p->next;
 
+    p = new node{nullptr, 2, p};
+    p->next->prev = p;
+
+    p = new node{nullptr, -1, p};
+    p->next->prev = p;
+
+    p = insert(p, -10);
+    p = insert(p, -10);
+    p = insert(p, 10);
+    p = insert(p, 9);
+    p = insert(p, 9);
+    p = remove(p, 5);
+    p = remove(p, -10);
+
     node *q = p;
     while (q->next) // printing forwards
     {
@@ -75,21 +112,12 @@ int main()
     std::cout << q->data << " ";
     std::cout << std::endl;
 
-    // while (q) // printing backwards
-    // {
-    //     std::cout << q->data << " ";
-    //     q = q->prev;
-    // }
-    // std::cout << std::endl;
-
-    // p = insert(p, 4);
-    p = remove(p, 3);
-    while (q->next) // printing forwards
+    while (q) // printing backwards
     {
         std::cout << q->data << " ";
-        q = q->next;
+        q = q->prev;
     }
-    std::cout << q->data << " ";
+    std::cout << std::endl;
 
     return 0;
 }

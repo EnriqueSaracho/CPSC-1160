@@ -1,3 +1,6 @@
+/*
+Lecture 15
+*/
 #include <iostream>
 #include <vector>
 
@@ -14,6 +17,17 @@ void print(node *p)
     {
         std::cout << p->data << " ";
     }
+}
+
+// Appends a new node at the end of the list
+node *append(node *p, int n)
+{
+    if (!p)
+    {
+        return new node{n, nullptr};
+    }
+    p = append(p->next, n);
+    return p;
 }
 
 // Returns the copy of a linked list
@@ -103,7 +117,11 @@ node *selection_sort(node *p)
 
 int main()
 {
-    std::vector<int> v = {5, 12, 4, 12, 78, 43, 9, 10};
+    node *h = new node{1, new node{2, new node{4, new node{7, new node{10, nullptr}}}}};
+    print(h);
+    h = append(h, 17);
+    print(h);
+    // std::vector<int> v = {5, 12, 4, 12, 78, 43, 9, 10};
     // node *p = r_vect_2_11(v);
     // print(p);
     // p = sel_sort(p);
