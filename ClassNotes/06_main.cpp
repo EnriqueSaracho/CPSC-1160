@@ -1,4 +1,4 @@
-/*
+/* Vectors
 Lecture 4
 14/09/2003
 Notes:

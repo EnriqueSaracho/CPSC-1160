@@ -1,4 +1,4 @@
-/*
+/* Classes
 Lecture 11
 Notes:
     - header file: point.h

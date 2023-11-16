@@ -1,4 +1,4 @@
-/*
+/* Ifs and loops
 Lecture 2
 07/09/2023
 Notes on:

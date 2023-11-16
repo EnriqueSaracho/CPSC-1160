@@ -1,4 +1,4 @@
-/*
+/* Linear Search (vectors)
 Lecture 6
 21/09/2023
 Notes:

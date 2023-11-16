@@ -1,3 +1,7 @@
+/* Stacks in functions
+Lecture 19
+16/11/2023
+*/
 #include <iostream>
 #include "stack.h"
 

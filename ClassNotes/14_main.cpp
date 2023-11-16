@@ -1,4 +1,4 @@
-/*
+/* Structs
 Lecture 10
 10/10/2023
 Notes:

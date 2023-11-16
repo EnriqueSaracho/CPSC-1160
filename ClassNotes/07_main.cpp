@@ -1,4 +1,4 @@
-/*
+/* Binary Search (vectors)
 Lecture 5
 19/09/2023
 Notes:

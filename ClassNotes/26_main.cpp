@@ -1,4 +1,4 @@
-/*
+/* Stacks (Linked Lists)
 Lecture 18
 */
 

@@ -1,4 +1,4 @@
-/*
+/* Insertion Sort (vectors)
 Lecture 8
 03/10/2023
 Notes:

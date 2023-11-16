@@ -1,4 +1,4 @@
-/*
+/* Selection Sort (vectors)
 Lecture 7
 28/09/2023
 Notes:

@@ -1,4 +1,4 @@
-/*
+/* Stacks in functions
 Lecture 19
 - Stacks
 This is the problem from lab3 but with stacks instead of normal recursion.

@@ -1,4 +1,4 @@
-/*
+/* Pointers and classes
 Lecture 14 maybe?
 Header file: point&classes.h
 */

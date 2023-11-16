@@ -1,4 +1,4 @@
-/*
+/* Linked Lists
 Lecture 15
 */
 #include <iostream>

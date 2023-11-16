@@ -1,4 +1,4 @@
-/*
+/* Pointers
 Lecture 14 (I think)
 20/10/2023
 Notes:

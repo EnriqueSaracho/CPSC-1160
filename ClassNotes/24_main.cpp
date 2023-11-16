@@ -1,12 +1,16 @@
-/*
+/* Stacks (vectors)
 Lecture 18
 14/11/2023
+- Stacks with vectors.
 */
 #include <iostream>
 #include <vector>
 
 /*
-Array stack are better for fixed sizes.
+Stack functions
+    push    add to the top
+    pop     remove from the top
+    peek    look at the top
 */
 
 template <typename T>
@@ -14,12 +18,7 @@ struct stack
 {
     void push(T x)
     {
-        if (isFull())
-        {
-            std::cerr << "STACK IS FULL";
-            exit(1);
-        }
-        arr[top++] = x;
+        top.push_back(x);
     }
     T pop()
     {
@@ -28,7 +27,9 @@ struct stack
             std::cerr << "STACK IS EMPTY";
             exit(1);
         }
-        return arr[--top];
+        T retVal = top.back();
+        top.pop_back();
+        return retVal;
     }
     T peek()
     {
@@ -37,20 +38,15 @@ struct stack
             std::cerr << "STACK IS EMPTY";
             exit(1);
         }
-        return arr[top - 1];
+        return top.back();
     }
     bool isEmpty()
     {
-        return (top < 1);
-    }
-    bool isFull()
-    {
-        return (top == 10);
+        return top.empty();
     }
 
 private:
-    T arr[10];
-    int top = 0;
+    std::vector<int> top;
 };
 
 int main()
