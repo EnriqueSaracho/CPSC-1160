@@ -1,6 +1,7 @@
 /*
 Lecture 18
 14/11/2023
+- Stacks with vectors.
 */
 #include <iostream>
 #include <vector>
