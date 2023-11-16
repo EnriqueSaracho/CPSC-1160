@@ -49,5 +49,5 @@ int main()
     //     std::cout << s.pop() << std::endl;
     // }
 
-    // binarySequence();
+    binarySequence(3);
 }
