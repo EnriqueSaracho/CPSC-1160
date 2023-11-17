@@ -46,7 +46,7 @@ struct stack
     }
 
 private:
-    std::vector<int> top;
+    std::vector<T> top;
 };
 
 int main()

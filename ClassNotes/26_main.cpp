@@ -30,8 +30,8 @@ void binSeqStack(int k)
         }
         else
         {
-            s.push(tmp + '0');
             s.push(tmp + '1');
+            s.push(tmp + '0');
         }
     }
 }
@@ -50,4 +50,6 @@ int main()
     // }
 
     binarySequence(3);
+    std::cout << std::endl;
+    binSeqStack(3);
 }
