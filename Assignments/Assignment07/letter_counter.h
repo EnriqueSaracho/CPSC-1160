@@ -45,7 +45,10 @@ public:
     letter_counter(const letter_counter &);
 
     // Destructor:
-    // ~letter_counter();
+    ~letter_counter();
+
+    // Assignment operator
+    const letter_counter &operator=(const letter_counter &);
 
     /**
      * Prints the information from the vector of structs 'A' in an ordered manner.
@@ -73,36 +76,6 @@ public:
      * @return void - updates this object's vector.
      */
     void add(char i);
-
-    /**
-     * Searches for a letter inside the vector of this letter_counter object.
-     *
-     * @param key - character/letter being looked for.
-     * @param low - int, lowest index of partition.
-     * @param high - int, highest index of partition.
-     * @return integer - '-1' if not found, any other value represents the location/index of the character in the vector.
-     */
-    // int binarySearch(char, int, int);
-
-    /**
-     * Sortes the vector of structs 'A' by 'value' alphabetically.
-     *
-     * @param low - lowest index of partition.
-     * @param highest - highest index of partition.
-     * @return void - updates this objects vector.
-     */
-    // void quickSort(int, int);
-
-    /**
-     * Searches for a letter inside the vector of a letter_counter object.
-     *
-     * @param a - letter_counter object.
-     * @param key - character/letter being looked for.
-     * @param low - int, lowest index of partition.
-     * @param high - int, highest index of partition.
-     * @return integer - '-1' if not found, any other value represents the location/index of the character in the vector.
-     */
-    // friend int binarySearch(const letter_counter &, char, int, int);
 };
 
 void letter_counter::add(char ch)
@@ -156,7 +129,6 @@ letter_counter::letter_counter(std::string str)
 
 letter_counter::letter_counter(const letter_counter &obj)
 {
-    std::cout << "-------------------COPY-------------------" << std::endl;
     size = obj.size;
 
     d = new node;
@@ -164,18 +136,36 @@ letter_counter::letter_counter(const letter_counter &obj)
     d->prev = d;
 
     node *p = obj.d->next;
+    int count;
     for (; p != obj.d; p = p->next)
     {
-        add(p->data.value);
+        count = p->data.count;
+        for (int i = 0; i < count; i++)
+            add(p->data.value);
     }
+    std::cout << "-------------------COPY-------------------" << std::endl;
 }
 
-// letter_counter::~letter_counter()
-// {
-//     delete A;
-//     A = nullptr;
-//     std::cout << "-------------------DELETE-------------------" << std::endl;
-// }
+letter_counter::~letter_counter()
+{
+    node *p = d->next; // TODO: create delete list function
+    while (p != d)
+    {
+        d = p->next;
+        p->next->prev = d;
+        node *tmp = p;
+        p = p->next;
+        delete tmp;
+    }
+    std::cout << "-------------------DELETE-------------------" << std::endl;
+}
+
+const letter_counter &letter_counter::operator=(const letter_counter &obj)
+{
+    if (this != &obj)
+    {
+    }
+}
 
 std::ostream &operator<<(std::ostream &out, const letter_counter &obj)
 {
@@ -192,70 +182,60 @@ std::ostream &operator<<(std::ostream &out, const letter_counter &obj)
 const letter_counter operator-(const letter_counter &a, const letter_counter &b)
 {
     std::string str = "";
-    int index, diff;
-    for (int i = 0; i < a.size; i++)
+    letter_counter::node *p = a.d->next;
+    letter_counter::node *q = b.d->next;
+    int dif;
+    while (p != a.d || q != b.d)
     {
-        index = binarySearch(b, a.A[i].value, 0, b.size - 1);
-        diff = index < 0 ? 0 : b.A[index].count;
-        for (int j = 0; j < (a.A[i].count - diff); j++)
+        // if p is already at dummy but not q
+        if (p == a.d)
         {
-            str += a.A[i].value;
+            while (q != b.d)
+            {
+                dif = q->data.count;
+                for (int i = 0; i < dif; i++)
+                    str += q->data.value;
+                q = q->next;
+            }
+        }
+        // if q is already at dummy but not p
+        else if (q == b.d)
+        {
+            while (p != a.d)
+            {
+                dif = p->data.count;
+                for (int i = 0; i < dif; i++)
+                    str += p->data.value;
+                p = p->next;
+            }
+        }
+        // if both p and q are at the same value
+        else if (p->data.value == q->data.value)
+        {
+            dif = std::abs(p->data.count - q->data.count);
+            for (int i = 0; i < dif; i++)
+                str += p->data.value;
+            p = (p != a.d) ? p->next : p;
+            q = (q != b.d) ? q->next : q;
+        }
+        // if p is less than q
+        else if (p->data.value < q->data.value)
+        {
+            dif = p->data.count;
+            for (int i = 0; i < dif; i++)
+                str += p->data.value;
+            p = (p != a.d) ? p->next : p;
+        }
+        // if q is less than p
+        else
+        {
+            dif = q->data.count;
+            for (int i = 0; i < dif; i++)
+                str += q->data.value;
+            q = (q != b.d) ? q->next : q;
         }
     }
     return letter_counter(str);
 }
-
-// void letter_counter::quickSort(int low, int high)
-// {
-//     if (low >= high)
-//     {
-//         return;
-//     }
-//     if (low + 1 == high)
-//     {
-//         if (A[low].value > A[high].value)
-//         {
-//             item temp = A[low];
-//             A[low] = A[high];
-//             A[high] = temp;
-//         }
-//         return;
-//     }
-
-//     int i = low, j = high;
-//     int mid = (i + j) / 2;
-//     item pivot = A[mid];
-//     A[mid] = A[i];
-//     while (i < j)
-//     {
-//         while (i < j && pivot.value <= A[j].value)
-//         {
-//             j--;
-//         }
-//         A[i] = A[j];
-//         while (i < j && pivot.value >= A[i].value)
-//         {
-//             i++;
-//         }
-//         A[j] = A[i];
-//     }
-//     A[j] = pivot;
-//     mid = i;
-//     quickSort(low, mid - 1);
-//     quickSort(mid + 1, high);
-// }
-
-// int binarySearch(const letter_counter &a, char key, int low, int high)
-// {
-//     if (low > high)
-//         return -1;
-//     int mid = (low + high) / 2;
-//     if (a.A[mid].value == key)
-//         return mid;
-//     else if (a.A[mid].value > key)
-//         return binarySearch(a, key, low, mid - 1);
-//     else
-//         return binarySearch(a, key, mid + 1, high);
-// }
 
 #endif
