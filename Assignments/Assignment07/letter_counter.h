@@ -100,6 +100,8 @@ void letter_counter::add(char ch)
         p->data.count++;
         return;
     }
+
+    // value wasn't on the list
     node *t = new node{p->prev, {ch, 1}, p};
     t->next->prev = t;
     t->prev->next = t;
@@ -148,7 +150,7 @@ letter_counter::letter_counter(const letter_counter &obj)
 
 letter_counter::~letter_counter()
 {
-    node *p = d->next; // TODO: create delete list function
+    node *p = d->next;
     while (p != d)
     {
         d = p->next;
@@ -162,9 +164,6 @@ letter_counter::~letter_counter()
 
 const letter_counter &letter_counter::operator=(const letter_counter &obj)
 {
-    if (this != &obj)
-    {
-    }
 }
 
 std::ostream &operator<<(std::ostream &out, const letter_counter &obj)
