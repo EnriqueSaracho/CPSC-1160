@@ -27,27 +27,45 @@ public:
     /**
      * Default constructor function.
      *
-     * @return letter_counter - the letter_counter class object.
+     * @return letter_counter object itself.
      */
     letter_counter();
 
     /**
      * Constructor function.
-     * Initializes the letter_counter object and stores in the dinamic array 'A' each letter from the input string as well
+     * Initializes the letter_counter object and stores in a circular linked list of head 'd' each letter from the input string as well
      * as the amount of times it appears.
      *
      * @param str - string.
-     * @return letter_counter - the letter_counter class object.
+     * @return letter_counter object itself.
      */
     letter_counter(std::string);
 
-    // Copy constructor:
+    /**
+     * Copy constructor function.
+     * Copies the values from the object of the right hand side of the 'equals' operator to the newly declared object.
+     *
+     * @param obj - letter_counter object.
+     * @return letter_counter object itself.
+     */
     letter_counter(const letter_counter &);
 
-    // Destructor:
+    /**
+     * Destructor funciton.
+     * Deletes the values from the object.
+     *
+     * @return modifies the letter_counter object itself.
+     */
     ~letter_counter();
 
-    // Assignment operator
+    /**
+     * Assignment operator.
+     * Copies the values from the object of the right hand side of the 'equals' operator to the newly declared object.
+     * Gets called when the current object already has been initialized.
+     *
+     * @param obj - letter_counter object.
+     * @return modifies the letter_counter object itself.
+     */
     const letter_counter &operator=(const letter_counter &);
 
     /**
@@ -60,8 +78,8 @@ public:
     friend std::ostream &operator<<(std::ostream &out, const letter_counter &obj);
 
     /**
-     * Creates a new letter_counter object with the vector of structs 'A' being the result of the difference between two other
-     * letter_counter object's vectors values.
+     * Creates a new letter_counter object with the linked list of head 'd' being the result of the difference between two other
+     * letter_counter object's lists values.
      *
      * @param a - letter_counter object.
      * @param b - letter_counter object.
@@ -70,10 +88,10 @@ public:
     friend const letter_counter operator-(const letter_counter &, const letter_counter &);
 
     /**
-     * Adds a new letter to the vector of the letter_counter object.
+     * Adds a new letter to the linked list of the letter_counter object.
      *
      * @param ch - character being added.
-     * @return void - updates this object's vector.
+     * @return void - updates this object's linked list.
      */
     void add(char i);
 };
@@ -131,11 +149,10 @@ letter_counter::letter_counter(std::string str)
 
 letter_counter::letter_counter(const letter_counter &obj)
 {
-    size = obj.size;
-
     d = new node;
     d->next = d;
     d->prev = d;
+    size = obj.size;
 
     node *p = obj.d->next;
     int count;
@@ -150,20 +167,57 @@ letter_counter::letter_counter(const letter_counter &obj)
 
 letter_counter::~letter_counter()
 {
-    node *p = d->next;
-    while (p != d)
+    if (d->next != d)
     {
-        d = p->next;
-        p->next->prev = d;
-        node *tmp = p;
-        p = p->next;
-        delete tmp;
+        node *p = d->next;
+        while (p != d)
+        {
+            node *tmp = p;
+            p = p->next;
+            delete tmp;
+        }
     }
+    delete d;
+    d = nullptr;
+    size = 0;
     std::cout << "-------------------DELETE-------------------" << std::endl;
 }
 
 const letter_counter &letter_counter::operator=(const letter_counter &obj)
 {
+    if (this != &obj)
+    {
+        // deleting
+        size = 0;
+        node *p = d->next;
+        while (p != d)
+        {
+            node *tmp = p;
+            p = p->next;
+            delete tmp;
+        }
+        delete d;
+        d = nullptr;
+        p = nullptr;
+
+        // Copying
+        std::cout << "-------------------ASSIGNMENT-------------------" << std::endl;
+        size = obj.size;
+        d = new node;
+        d->next = d;
+        d->prev = d;
+        p = obj.d->next;
+        int count;
+        for (; p != obj.d; p = p->next)
+        {
+            count = p->data.count;
+            for (int i = 0; i < count; i++)
+            {
+                add(p->data.value);
+            }
+        }
+    }
+    return *this;
 }
 
 std::ostream &operator<<(std::ostream &out, const letter_counter &obj)
@@ -184,21 +238,10 @@ const letter_counter operator-(const letter_counter &a, const letter_counter &b)
     letter_counter::node *p = a.d->next;
     letter_counter::node *q = b.d->next;
     int dif;
-    while (p != a.d || q != b.d)
+    while (p != a.d)
     {
-        // if p is already at dummy but not q
-        if (p == a.d)
-        {
-            while (q != b.d)
-            {
-                dif = q->data.count;
-                for (int i = 0; i < dif; i++)
-                    str += q->data.value;
-                q = q->next;
-            }
-        }
         // if q is already at dummy but not p
-        else if (q == b.d)
+        if (q == b.d)
         {
             while (p != a.d)
             {
@@ -211,9 +254,10 @@ const letter_counter operator-(const letter_counter &a, const letter_counter &b)
         // if both p and q are at the same value
         else if (p->data.value == q->data.value)
         {
-            dif = std::abs(p->data.count - q->data.count);
-            for (int i = 0; i < dif; i++)
-                str += p->data.value;
+            dif = p->data.count - q->data.count;
+            if (dif > 1)
+                for (int i = 0; i < dif; i++)
+                    str += p->data.value;
             p = (p != a.d) ? p->next : p;
             q = (q != b.d) ? q->next : q;
         }
@@ -228,12 +272,10 @@ const letter_counter operator-(const letter_counter &a, const letter_counter &b)
         // if q is less than p
         else
         {
-            dif = q->data.count;
-            for (int i = 0; i < dif; i++)
-                str += q->data.value;
             q = (q != b.d) ? q->next : q;
         }
     }
+
     return letter_counter(str);
 }
 
