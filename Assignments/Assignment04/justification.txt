@@ -1,0 +1,8 @@
+Program 1
+This program uses an iterative funtion that modifies a string but organizing the uppercase letters to the left side and the lowercase to the right side.
+
+It starts by running a first loop that counts the number of uppercase letters. This is so the program knows at which index of the string the uppercase letters should end and the lowercase start.
+
+Then it goes again through the string with a loop that looks for a lowercase letter in the part of the string that should be uppercase only. Once it finds it, it starts another loop at the index where the lowercase letters should start and looks for an uppercase letter. When it finds it, it switches the values and then continues the previous loop but it keeps the index of where the last uppercase was found, so it doesn't look for one in the already searched part.
+
+This ends with all uppercase ordered at the left side and lowercase at the right. It goes through the string at least two times, and worst case senario, when all the uppercase are to the right side of the string, three times.
