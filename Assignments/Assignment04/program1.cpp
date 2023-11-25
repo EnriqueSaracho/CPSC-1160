@@ -8,7 +8,6 @@ void switchChars(std::string &str, int a, int b)
     str[a] = tmp;
 }
 
-// it does run a number of loops but they become smaller the more switches are made. the worst case senario is if all the uppercase letters are to right side of the string.
 void organize(std::string &str)
 {
     int count = 0;
