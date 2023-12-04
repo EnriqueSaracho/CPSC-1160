@@ -1,4 +1,4 @@
-/*
+/* Arrays
 Lecture 4
 14/09/2023
 Notes:
