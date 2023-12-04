@@ -15,6 +15,15 @@ struct point
     }
 };
 
+/**
+ * Store Values function.
+ * Reads a matrix from a file and stores it in a multi-dimensional vector.
+ *
+ * @param m - multi-dimensional vector of integers.
+ * @param fin - input file.
+ * @param rows - integer, amount of rows.
+ * @param cols - integer, colums.
+ */
 void storeValues(std::vector<std::vector<int>> &m, std::fstream &fin, int rows, int cols)
 {
     for (int i = 0; i < rows; i++)
@@ -22,6 +31,12 @@ void storeValues(std::vector<std::vector<int>> &m, std::fstream &fin, int rows, 
             fin >> m[i][j];
 }
 
+/**
+ * Print function.
+ * Prints the values of a multi-dimentional vector.
+ *
+ * @param m - multi-dimensional vector.
+ */
 template <typename T>
 void print(std::vector<std::vector<T>> &m)
 {
@@ -35,6 +50,12 @@ void print(std::vector<std::vector<T>> &m)
     }
 }
 
+/**
+ * Path finder function.
+ * Finds a zero in a matrix of integers and tries to find a positive path to another zero in the matrix.
+ *
+ * @param m - multi-dimensional vector of integers.
+ */
 void pathFinder(std::vector<std::vector<int>> &m)
 {
     int rows = m.size();
@@ -55,7 +76,6 @@ void pathFinder(std::vector<std::vector<int>> &m)
             }
         }
 
-    flag;
     int r = start.row,
         c = start.col,
         sum = 0;
@@ -63,16 +83,8 @@ void pathFinder(std::vector<std::vector<int>> &m)
     stack<point> path;
     path.push(start);
 
-    while (m[r][c] != 0 || flag)
+    while (m[r][c] != 0 || (r == start.row && c == start.col))
     {
-        flag = false;
-
-        // TODO: Debugging code
-        // std::cout << "r = " << r << std::endl;
-        // std::cout << "c = " << c << std::endl;
-        // print(map);
-        // std::cout << std::endl;
-
         // Moving spot
         if (dir[0])
         {
@@ -165,7 +177,7 @@ void pathFinder(std::vector<std::vector<int>> &m)
             path.pop();
             dir[3] = false;
         }
-        else if (map[r][c] != '-' || (m[r][c] == 0 && sum < 0)) // crashed against a used spot, or a zero while the sum is negative
+        else if (map[r][c] != '-' || (m[r][c] == 0 && sum < 1)) // crashed against a used spot, or a zero while the sum not positive
         {
             point last = path.pop();
             if (last.row < path.peek().row) // crashed above
@@ -201,16 +213,20 @@ void pathFinder(std::vector<std::vector<int>> &m)
             dir[2] = true;
             dir[3] = true;
         }
-
-        if (m[r][c] == 0)
-        {
-            map[r][c] = 'X';
-        }
+    }
+    if (m[r][c] == 0)
+    {
+        map[r][c] = 'X';
     }
 
     print(map);
 }
 
+/**
+ * Main function.
+ *
+ * @return 0, 1;
+ */
 int main()
 {
     std::fstream fin;
