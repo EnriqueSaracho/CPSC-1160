@@ -215,10 +215,10 @@ int main()
 {
     std::fstream fin;
     std::string filename;
-    // std::cout << "Enter input file name: ";
-    // std::cin >> filename;
-    // fin.open(filename);
-    fin.open("Matrix.txt");
+    std::cout << "Enter input file name: ";
+    std::cin >> filename;
+    fin.open(filename);
+    // fin.open("Matrix.txt");
 
     if (!fin.is_open())
     {
@@ -237,4 +237,5 @@ int main()
     }
 
     fin.close();
+    return 0;
 }
