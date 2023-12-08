@@ -176,7 +176,7 @@ int main()
     // p->next = new node{5, nullptr}; // the '->' dereferences the pointer and accesses the node's property. same as (*p).next
     // p->next->next = new node{2, nullptr};
     // p->next->next->next = new node{7, new node{4, nullptr}};
-    // Linked list so fat:
+    // Linked list so far:
     // p -> 3 -> 5 -> 2 -> 7 -> 4 -> nullptr
     // std::cout << p->next->next->next->next->data << std::endl; // prints 4
 
