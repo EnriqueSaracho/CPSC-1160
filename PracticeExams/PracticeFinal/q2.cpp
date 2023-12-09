@@ -82,4 +82,10 @@ int main()
     print(q);
 
     std::cout << propSubset(p, q) << std::endl;
+
+    /*
+    Complexity:
+        if n > m: n
+        else: m
+    */
 }
