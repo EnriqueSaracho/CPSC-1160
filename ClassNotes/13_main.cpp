@@ -36,19 +36,6 @@ int fun(std::vector<int> &v, int n)
     }
 }
 
-int F(int A[], int n)
-{
-    if (n == 0)
-        return 1;
-    else
-    {
-        int sum = 0;
-        for (int i = 0; i < n; i++)
-            sum += A[i];
-        return F(A, n - 1) + sum;
-    }
-}
-
 int main()
 {
 }

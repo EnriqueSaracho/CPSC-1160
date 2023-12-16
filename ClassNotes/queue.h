@@ -47,7 +47,7 @@ T queue<T>::dequeue()
 {
     if (isEmpty())
     {
-        std::cerr << "QUEUE IS FULL";
+        std::cerr << "QUEUE IS EMPTY";
         exit(1);
     }
     T ret = front();
@@ -64,7 +64,7 @@ T queue<T>::front()
 {
     if (isEmpty())
     {
-        std::cerr << "QUEUE IS FULL";
+        std::cerr << "QUEUE IS EMPTY";
         exit(1);
     }
     return head->data;

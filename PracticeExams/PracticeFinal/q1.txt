@@ -1,0 +1,41 @@
+-> Part (a)
+step 1: Read n data items into an array A of n elements.
+    complexity: O(n)
+
+step 2: Sort A such that A[0] <= A[1] <= ... <= A[n-1] using the merge sort algorithm.
+    complexity: O(nlogn)
+
+step 3: Perform binary search to locate a value in the array A.
+    complexity: O(logn)
+
+Overall complexity: O(nlogn)
+
+
+
+-> Part (b)
+Let C(n) be the number of additions (not subtractions) that the function F does.
+
+    int F(int A[], int n) {
+        if (n==0)
+            return 1;
+        else{
+            int sum = 0;
+            for(int i = 0; i < n; i++)
+                sum += A[i];
+            return F(A, n-1) + sum;
+        }
+    }
+
+- Write recurrence relation for C(n) and initial value.
+    
+    Base case:
+        C(0) = 0
+    
+    C(n)    = 2n + 1 + C(n-1)
+            = (2n+1) + (2n-1+1) + C(n-2)
+            = (2n+1) + (2n-1+1) + (2n-2+1) + C(n-3)
+    n - k = 0
+    k = n
+            = (2n+1) + (2n-1+1) + (2n-2+1) + C(0)
+            = (2n+1) + (2n-1+1) + (2n-2+1)
+            = ?!
