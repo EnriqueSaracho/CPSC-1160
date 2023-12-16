@@ -18,19 +18,13 @@ void twoLargest(std::vector<int> &v, int &a, int &b)
     for (int i = 2; i < v.size(); i++)
     {
         if (v[i] > a && v[i] > b) // if its greater than both
-        {
             if (a < b)
                 a = v[i];
             else
                 b = v[i];
-        }
         else if (v[i] > a && v[i] < b) // if its greater than a but not b
-        {
             a = v[i];
-        }
         else if (v[i] < a && v[i] > b) // if its greater than b but not a
-        {
             b = v[i];
-        }
     }
 }

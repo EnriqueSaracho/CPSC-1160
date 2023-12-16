@@ -26,6 +26,8 @@ int main()
 
 node *odd_even(node *p)
 {
+    if (!p)
+        return p;
     node *h = p;
     for (; p; p = p->next)
     {
