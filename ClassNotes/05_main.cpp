@@ -6,7 +6,7 @@ Notes:
         - Types.
         - Declaration.
         - Passing as arguments.
-        - Multidimentional.
+        - Multidimensional.
 */
 #include <iostream>
 const int MAX_SIZE = 100;

@@ -2,6 +2,40 @@
 
 C++
 
-- if statements
-- loops
-- scopes
+- If statements
+- Loops
+- Scopes
+- std::string
+- std::cout
+- Random numbers
+- Functions/Methods
+  - Prototype & definition
+  - Parameters & arguments
+- Input files
+- Arrays
+  - Normal
+  - Multidimensional
+- Vectors
+  - Normal
+  - Multidimensional
+- Recursion
+- Binary Search
+- Linear Search
+- Selection Sort
+- Insertion Sort
+- Quick Sort
+- Merge Sort
+- Complexity Analisis
+- Structs
+- Classes
+- .h files
+- Pointers
+- Dynamic arrays
+- Linked lists
+  - Singular
+  - Double
+  - Circular
+- Stacks
+- Queues
+- Dynamic programming
+- Bit shifting

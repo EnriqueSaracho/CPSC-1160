@@ -3,7 +3,7 @@ Lecture 3
 12/09/2023
 Notes:
     - Function/method creation.
-        - Prototype and actual function.
+        - Prototype and definition.
         - Parameters.
             - Types.
             - Manipulating variables.
