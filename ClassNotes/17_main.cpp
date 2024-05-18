@@ -37,7 +37,7 @@ int main()
 
     int *q = new int(4); // Starts the inside value at a 4.
     int *r;
-    r = p; // r is a new pointer pointing to the same piece of memory.
+    r = p; // r is a new pointer pointing to the same piece of memory as p.
     p = q; // now p and q are pointing at the same piece of memory, r didn't change.
 
     *q = 6;
